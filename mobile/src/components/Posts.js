@@ -17,6 +17,7 @@ const Posts = ({navigation}) => {
 
   const fetchPostList = async () => {
     const posts = await getPosts();
+    console.log({posts});
     setPostList(posts);
   };
 
@@ -37,13 +38,13 @@ const Posts = ({navigation}) => {
             }}>
             Posts
           </Text>
-          <View>
+          {/* <View>
             <ActivityIndicator
               size="small"
               animating={postList === undefined}
               color="#6c6eff"
             />
-          </View>
+          </View> */}
           {postList &&
             postList.map(p => (
               <TouchableOpacity
@@ -51,7 +52,7 @@ const Posts = ({navigation}) => {
                 onPress={() =>
                   navigation.navigate('PostNComments', {postId: p.id})
                 }>
-                <Post data={{...p}} />
+                <Post data={{...p}} numberOfLines={2} />
                 <View
                   style={{
                     height: 2,

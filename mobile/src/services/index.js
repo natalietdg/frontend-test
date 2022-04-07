@@ -7,10 +7,22 @@ export async function getPosts() {
     .get(`${url}/posts`)
     .then(r => {
       const {data} = r;
+      console.log({data});
       return data;
     })
     .catch(e => {
-      console.log({e});
+      if (!e.response) {
+        // network error
+        console.log({e});
+      } else {
+        // http status code
+        const code = e.response.status;
+        // response data
+        const response = e.response.data;
+
+        console.log({code});
+        console.log({response});
+      }
     });
 }
 

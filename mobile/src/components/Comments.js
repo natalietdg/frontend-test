@@ -41,15 +41,15 @@ const Comments = ({route, navigation}) => {
   const fetchKeywordResults = async searchKeyword => {
     const nameResults = await getComments(
       postId,
-      `name=${searchKeyword.replaceAll(' ', '+').replaceAll('\\n', '%0A')}`,
+      `name=${searchKeyword.toLowerCase().replaceAll(' ', '+').replaceAll('\\n', '%0A')}`,
     );
     const emailResults = await getComments(
       postId,
-      `email=${searchKeyword.replaceAll(' ', '+').replaceAll('\\n', '%0A')}`,
+      `email=${`${searchKeyword.charAt(0).toUpperCase()}${searchKeyword.slice(1)}`.replaceAll(' ', '+').replaceAll('\\n', '%0A')}`,
     );
     const bodyResults = await getComments(
       postId,
-      `body=${searchKeyword.replaceAll(' ', '+').replaceAll('\\n', '%0A')}`,
+      `body=${searchKeyword.toLowerCase().replaceAll(' ', '+').replaceAll('\\n', '%0A')}`,
     );
 
     setLoading(false);
